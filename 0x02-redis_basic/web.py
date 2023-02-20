@@ -15,6 +15,7 @@ def url_count(method: Callable) -> Callable:
 
     @wraps(method)
     def wrapper(*args, **kwargs):
+        """Wrapper method"""
         url = args[0]
         redis_client.incr(f"count:{url}")
         cached = redis_client.get(f'{url}')
